@@ -164,3 +164,160 @@ function displayChords() {
   });
 }
 
+function playChord(notes) {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioContext();
+
+  const now = audioCtx.currentTime;
+
+  notes.forEach(note => {
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    // Set oscillator type (sine, square, triangle, sawtooth)
+    oscillator.type = 'sine';
+
+    // Convert note to frequency
+    const frequency = getFrequency(note);
+
+    oscillator.frequency.setValueAtTime(frequency, now);
+
+    // Set volume
+    gainNode.gain.setValueAtTime(0.2, now);
+
+    // Connect oscillator to gain node to audio context
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    // Start and stop oscillator
+    oscillator.start(now);
+    oscillator.stop(now + 1); // Play for 1 second
+  });
+}
+
+function getFrequency(note) {
+  const noteFrequencies = {
+    'C': 261.63,
+    'C#': 277.18,
+    'Db': 277.18,
+    'D': 293.66,
+    'D#': 311.13,
+    'Eb': 311.13,
+    'E': 329.63,
+    'F': 349.23,
+    'F#': 369.99,
+    'Gb': 369.99,
+    'G': 392.00,
+    'G#': 415.30,
+    'Ab': 415.30,
+    'A': 440.00,
+    'A#': 466.16,
+    'Bb': 466.16,
+    'B': 493.88,
+  };
+
+  return noteFrequencies[note];
+}
+
+function playChord(notes) {
+  const instrumentSelect = document.getElementById('instrument-select');
+  const oscillatorType = instrumentSelect.value;
+
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioContext();
+
+  const now = audioCtx.currentTime;
+
+  notes.forEach(note => {
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    // Set oscillator type based on selected instrument
+    oscillator.type = oscillatorType;
+
+    // Convert note to frequency
+    const frequency = getFrequency(note);
+
+    oscillator.frequency.setValueAtTime(frequency, now);
+
+    // Set volume
+    gainNode.gain.setValueAtTime(0.2, now);
+
+    // Connect oscillator to gain node to audio context
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    // Start and stop oscillator
+    oscillator.start(now);
+    oscillator.stop(now + 1); // Play for 1 second
+  });
+}
+
+// Existing code...
+
+// Add this function
+function getFrequency(note) {
+  const noteFrequencies = {
+    'C': 261.63,
+    'C#': 277.18,
+    'Db': 277.18,
+    'D': 293.66,
+    'D#': 311.13,
+    'Eb': 311.13,
+    'E': 329.63,
+    'F': 349.23,
+    'F#': 369.99,
+    'Gb': 369.99,
+    'G': 392.00,
+    'G#': 415.30,
+    'Ab': 415.30,
+    'A': 440.00,
+    'A#': 466.16,
+    'Bb': 466.16,
+    'B': 493.88,
+  };
+
+  return noteFrequencies[note];
+}
+
+function playChord(notes) {
+  const instrumentSelect = document.getElementById('instrument-select');
+  const oscillatorType = instrumentSelect ? instrumentSelect.value : 'sine';
+
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioContext();
+
+  const now = audioCtx.currentTime;
+
+  notes.forEach(note => {
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    // Set oscillator type
+    oscillator.type = oscillatorType;
+
+    // Convert note to frequency
+    const frequency = getFrequency(note);
+
+    oscillator.frequency.setValueAtTime(frequency, now);
+
+    // Set volume
+    gainNode.gain.setValueAtTime(0.2, now);
+
+    // Connect oscillator to gain node to audio context
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    // Start and stop oscillator
+    oscillator.start(now);
+    oscillator.stop(now + 1); // Play for 1 second
+  });
+}
+
+// Modify displayChords() as shown earlier
+
+if (!window.AudioContext && !window.webkitAudioContext) {
+  alert('Web Audio API is not supported in this browser.');
+  return;
+}
+
