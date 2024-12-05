@@ -1,60 +1,58 @@
 /* styles.css */
 
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 2em;
-    padding: 2rem;
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  padding: 0;
     background-color: black;
-    color: white;
-    border: white solid 1px;
+    color: whitesmoke;
+    border: whitesmoke 1px solid;
     border-radius: 5px;
+}
 
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  .input-group {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-  }
-  
-  label {
-    margin-right: 10px;
-  }
-  
-  #chord-display {
-    margin-top: 20px;
-  }
-  
-  .chord {
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
-  }
-  
-  .chord:last-child {
-    border-bottom: none;
-  }
-  
-  @media (max-width: 600px) {
-    .input-group {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    label, select {
-      margin: 5px 0;
-    }
-  }
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
 
+h1 {
+  text-align: center;
+}
+
+/* Input Groups */
+.input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.input-group label {
+  margin-right: 10px;
+}
+
+.input-group select {
+  padding: 5px;
+  font-size: 16px;
+}
+
+/* Chord Display */
+#chord-display {
+  margin-top: 20px;
+}
+
+.chord {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.chord:last-child {
+  border-bottom: none;
+}
+
+/* Play Button */
 .play-button {
   margin-top: 10px;
   padding: 5px 10px;
@@ -65,4 +63,15 @@ body {
 .play-button:hover {
   background-color: #f0f0f0;
 }
-  
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .input-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input-group label, .input-group select {
+    margin: 5px 0;
+  }
+}
