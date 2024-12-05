@@ -124,3 +124,43 @@ scaleSelect.addEventListener('change', displayChords);
 // keySelect.selectedIndex = 0;
 // scaleSelect.selectedIndex = 0;
 // displayChords();
+
+function displayChords() {
+  const key = keySelect.value;
+  const scaleType = scaleSelect.value;
+
+  if (!key) {
+    chordDisplay.innerHTML = '<p>Please select a key.</p>';
+    return;
+  }
+
+  const scale = getScale(key, scaleType);
+  const qualities = chordQualities[scaleType];
+
+  chordDisplay.innerHTML = ''; // Clear previous chords
+
+  scale.slice(0, 7).forEach((note, index) => {
+    const chordType = qualities[index];
+    const chordNotes = getChordNotes(scale, index, chordType);
+
+    const chordElement = document.createElement('div');
+    chordElement.classList.add('chord');
+
+    // Create Play Button
+    const playButton = document.createElement('button');
+    playButton.textContent = 'Play';
+    playButton.classList.add('play-button');
+    playButton.addEventListener('click', () => {
+      playChord(chordNotes);
+    });
+
+    chordElement.innerHTML = `
+      <strong>${romanNumerals[index]}</strong>: ${note} ${chordType}<br>
+      Notes: ${chordNotes.join(' - ')}
+    `;
+
+    chordElement.appendChild(playButton);
+    chordDisplay.appendChild(chordElement);
+  });
+}
+
