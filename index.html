@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chord Progression Helper</title>
+  <!-- Meta tags for SEO -->
+  <meta name="description" content="A simple web app to help musicians identify chord progressions based on a selected musical key.">
+  <meta name="keywords" content="music, chords, chord progressions, musicians, songwriters">
+  <meta name="author" content="Your Name">
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Chord Progression Helper</h1>
+    <div class="input-group">
+      <label for="key-select">Select Key:</label>
+      <select id="key-select">
+        <!-- Options will be populated by JavaScript -->
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="scale-select">Scale:</label>
+      <select id="scale-select">
+        <option value="major">Major</option>
+        <option value="minor">Minor</option>
+      </select>
+    </div>
+
+    <div id="chord-display">
+      <!-- Chord information will be displayed here -->
+    </div>
+  </div>
+
+  <!-- Include your JavaScript file -->
+  <script src="script.js"></script>
+</body>
+</html>
